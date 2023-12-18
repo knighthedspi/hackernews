@@ -34,9 +34,10 @@ fun HackerNewsItem(
         matchResult?.groupValues?.get(2)
     }
     Column(modifier = modifier) {
+        val score = item.score ?: 0
         Text(text = item.title.orEmpty(), style = Typography.headlineSmall)
         Text(text = "($domain)", style = Typography.titleLarge)
-        Text(text = "${item.score} points by ${item.by} $timeAgo ", style = Typography.labelSmall)
+        Text(text = "$score ${if (score > 1) "points" else "point"} by ${item.by} $timeAgo ", style = Typography.labelSmall)
         item.descendants?.let { descendants ->
             if (descendants > 0) {
                 Text(
@@ -68,7 +69,7 @@ fun HackerNewsItemPreview() {
             score = 3,
             title = "Germany Ends Electric Vehicle Subsidies Abruptly in Latest Blow to Tesla",
             parts = null,
-            descendants = 2
+            descendants = 1
         )
     )
 }

@@ -37,6 +37,14 @@ fun HackerNewsItem(
         Text(text = item.title.orEmpty(), style = Typography.headlineSmall)
         Text(text = "($domain)", style = Typography.titleLarge)
         Text(text = "${item.score} points by ${item.by} $timeAgo ", style = Typography.labelSmall)
+        item.descendants?.let { descendants ->
+            if (descendants > 0) {
+                Text(
+                    text = if (descendants > 1) "$descendants comments" else "$descendants comment",
+                    style = Typography.labelSmall
+                )
+            }
+        }
     }
 }
 
@@ -60,7 +68,7 @@ fun HackerNewsItemPreview() {
             score = 3,
             title = "Germany Ends Electric Vehicle Subsidies Abruptly in Latest Blow to Tesla",
             parts = null,
-            descendants = null
+            descendants = 2
         )
     )
 }

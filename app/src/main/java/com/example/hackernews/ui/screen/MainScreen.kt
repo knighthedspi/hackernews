@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,7 +24,7 @@ import com.example.hackernews.R
 import com.example.hackernews.data.model.HackerNewsItem
 
 @Composable
-fun MainScreen(items: LazyPagingItems<HackerNewsItem>, modifier: Modifier) {
+fun MainScreen(items: LazyPagingItems<HackerNewsItem>, modifier: Modifier, state: LazyListState) {
     val context = LocalContext.current
     when (items.loadState.refresh) {
         LoadState.Loading -> {
@@ -47,7 +48,7 @@ fun MainScreen(items: LazyPagingItems<HackerNewsItem>, modifier: Modifier) {
         }
 
         else -> {
-            LazyColumn(modifier = modifier) {
+            LazyColumn(modifier = modifier, state = state) {
                 items(count = items.itemCount) {
                     val item = items[it]
                     item?.let {

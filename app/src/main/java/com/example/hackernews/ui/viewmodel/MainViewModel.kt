@@ -18,5 +18,4 @@ class MainViewModel @Inject constructor(
     val newsPager = Pager(PagingConfig(pageSize = PAGE_SIZE)) {
         pagingSource
     }.flow
-
 }

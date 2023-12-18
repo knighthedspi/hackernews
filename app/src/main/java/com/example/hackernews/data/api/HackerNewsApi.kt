@@ -7,11 +7,14 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface HackerNewsApi {
-    @GET("/v0/newstories.json")
+    @GET("v0/newstories.json")
     suspend fun getNewsStories(
         @Query("print") print: String = "pretty"
     ): Response<List<Int>>
 
     @GET("/v0/item/{id}.json")
-    suspend fun getNewsItem(@Path("id") id: Int, @Query("print") print: String = "pretty"): Response<HackerNewsItem>
+    suspend fun getNewsItem(
+        @Path("id") id: Int,
+        @Query("print") print: String = "pretty"
+    ): Response<HackerNewsItem>
 }

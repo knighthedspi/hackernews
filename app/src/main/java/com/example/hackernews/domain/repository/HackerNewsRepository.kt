@@ -12,16 +12,13 @@ import javax.inject.Inject
 class HackerNewsRepository @Inject constructor(
     private val dataSource: HackerNewsDataSource
 ) {
-    companion object {
-        const val NEWS_LIMIT_SIZE = 20
-    }
-
     /*
         fetch the news stories with descending date order, up to 30 news
         @param startIndex index of the first item in the news stories response
+        @param limit num of items to fetch
         @return list of news items
      */
-    suspend fun fetchNewsStories(startIndex: Int = 0): List<HackerNewsItem> {
+    suspend fun fetchNewsStories(startIndex: Int = 0, limit: Int): List<HackerNewsItem> {
         val result = mutableListOf<HackerNewsItem>()
         try {
             coroutineScope {
@@ -34,7 +31,7 @@ class HackerNewsRepository @Inject constructor(
                     val newsItemsResult = newsStories
                         .subList(
                             startIndex,
-                            minOf(startIndex + NEWS_LIMIT_SIZE - 1, newsStories.size)
+                            minOf(startIndex + limit - 1, newsStories.size - 1)
                         )
                         .map {
                             async {

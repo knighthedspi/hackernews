@@ -7,7 +7,8 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -59,9 +60,15 @@ class MainActivity : ComponentActivity() {
                                 Text(text = stringResource(id = R.string.app_name))
                             },
                             actions = {
+                                IconButton(onClick = { viewModel.invalidateDataSource() }) {
+                                    Icon(
+                                        imageVector = Icons.Filled.Refresh,
+                                        contentDescription = "Refresh"
+                                    )
+                                }
                                 IconButton(onClick = { scrollToTopScoreItem.invoke() }) {
                                     Icon(
-                                        imageVector = Icons.Filled.KeyboardArrowUp,
+                                        imageVector = Icons.Filled.PlayArrow,
                                         contentDescription = "Most highly ranked article"
                                     )
                                 }

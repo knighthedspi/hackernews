@@ -8,6 +8,9 @@
       <entry key="HackerNewsPagingSourceTest">
         <State />
       </entry>
+      <entry key="MainScreenTest">
+        <State />
+      </entry>
       <entry key="app">
         <State>
           <runningDeviceTargetSelectedWithDropDown>
@@ -36,6 +39,9 @@
         </State>
       </entry>
       <entry key="testFetchNewsStories()">
+        <State />
+      </entry>
+      <entry key="testRenderItems()">
         <State />
       </entry>
     </value>

@@ -2,7 +2,35 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="HackerNewsDataSourceTest">
+        <State />
+      </entry>
+      <entry key="HackerNewsPagingSourceTest">
+        <State />
+      </entry>
+      <entry key="MainScreenTest">
+        <State />
+      </entry>
       <entry key="app">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="$USER_HOME$/.android/avd/Pixel_7_Pro_API_34.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2023-12-19T02:53:34.940278Z" />
+        </State>
+      </entry>
+      <entry key="testFetchNewsStories()">
+        <State />
+      </entry>
+      <entry key="testRenderItems()">
         <State />
       </entry>
     </value>

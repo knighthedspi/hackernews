@@ -10,7 +10,7 @@ class HackerNewsDataSource @Inject constructor(
     private val hackerNewsApi: HackerNewsApi,
     private val dispatcher: CoroutineDispatcher
 ) : BaseDataSource() {
-    suspend fun getNewsStories(): Resource<List<Int>> {
+    suspend fun getNewsStories(): Resource<List<Long>> {
         val result = getResult(dispatcher) {
             hackerNewsApi.getNewsStories()
         }
@@ -27,7 +27,7 @@ class HackerNewsDataSource @Inject constructor(
         }
     }
 
-    suspend fun getNewsItem(id: Int): Resource<HackerNewsItem> {
+    suspend fun getNewsItem(id: Long): Resource<HackerNewsItem> {
         val result = getResult(dispatcher) {
             hackerNewsApi.getNewsItem(id = id)
         }

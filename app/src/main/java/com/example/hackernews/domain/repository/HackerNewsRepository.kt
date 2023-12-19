@@ -31,7 +31,7 @@ class HackerNewsRepository @Inject constructor(
                     val newsItemsResult = newsStories
                         .subList(
                             startIndex,
-                            minOf(startIndex + limit - 1, newsStories.size - 1)
+                            minOf(startIndex + limit, newsStories.size)
                         )
                         .map {
                             async {

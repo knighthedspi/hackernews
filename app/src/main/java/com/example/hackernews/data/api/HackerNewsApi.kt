@@ -10,11 +10,11 @@ interface HackerNewsApi {
     @GET("v0/newstories.json")
     suspend fun getNewsStories(
         @Query("print") print: String = "pretty"
-    ): Response<List<Int>>
+    ): Response<List<Long>>
 
     @GET("/v0/item/{id}.json")
     suspend fun getNewsItem(
-        @Path("id") id: Int,
+        @Path("id") id: Long,
         @Query("print") print: String = "pretty"
     ): Response<HackerNewsItem>
 }

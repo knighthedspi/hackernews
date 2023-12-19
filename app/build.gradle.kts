@@ -16,7 +16,13 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.example.hackernews.TestRunner"
+        testInstrumentationRunnerArguments.putAll(
+            mapOf(
+                "clearPackageData" to "true"
+            )
+        )
+
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -80,28 +86,21 @@ dependencies {
     val hiltVersion = "2.48"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
-    implementation("androidx.hilt:hilt-navigation-fragment:1.1.0")
-    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 
     // paging
     val pagingVersion = "3.2.1"
-    implementation("androidx.paging:paging-runtime:$pagingVersion")
+    implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
     implementation("androidx.paging:paging-compose:3.3.0-alpha02")
 
     // coroutine
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    val coroutineVersion = "1.7.1"
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
 
     // lifecycle
     val lifecycleVersion = "2.6.2"
     val archVersion = "2.2.0"
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
-    // ViewModel utilities for Compose
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
-    // LiveData
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
-    // Lifecycle utilities for Compose
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion")
 
     // log
     implementation("com.jakewharton.timber:timber:5.0.1")
@@ -117,13 +116,20 @@ dependencies {
     }
 
     // test
+    val mockitoVersion = "5.8.0"
     testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.arch.core:core-testing:2.2.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(composeBom)
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
+    kaptAndroidTest("com.google.dagger:hilt-compiler:$hiltVersion")
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion")
+    androidTestImplementation("org.mockito:mockito-core:$mockitoVersion")
+    androidTestImplementation("org.mockito:mockito-android:$mockitoVersion")
     testImplementation("androidx.arch.core:core-testing:$archVersion")
-    testImplementation ("androidx.lifecycle:lifecycle-runtime-testing:$lifecycleVersion")
+    testImplementation("androidx.lifecycle:lifecycle-runtime-testing:$lifecycleVersion")
     testImplementation("androidx.paging:paging-common-ktx:$pagingVersion")
 }
 

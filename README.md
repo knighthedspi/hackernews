@@ -67,7 +67,6 @@ com.example.hackernews
 - Notes: connect to your Android device or simulator before executing
 
 ```sh
-cd src
 ./gradlew uninstallAll
 ./gradlew connectedAndroidTest
 ```
@@ -77,7 +76,6 @@ cd src
 ### Debug build
 
 ```sh
-cd src
 ./gradlew installDebug
 ```
 
@@ -86,7 +84,6 @@ cd src
 * Create keystore file and signing.properties file
 
 ```sh
-cr src
 mkdir keystore
 cd keystore/
 keytool -genkey -v -keystore your_release.jks -alias your_key_alias -keyalg RSA -keysize 2048 -validity 10000 -deststoretype pkcs12

@@ -54,15 +54,15 @@ com.example.hackernews
 * ui
     * Presentation layer
     * The UI of the app is as follows
-
       ![App UI](docs/hackernew_app_ui.png)
-  
     * Implement the Jetpack compose functions to render UI
     * Implement the ViewModel to handle UI interaction
-    * User can click on the refresh button to reload the news and click on the play button to scroll
-      to the most highly ranked news position
+    * User can click on
+        * the news item to read the associated link in the browser app
+        * the refresh button to reload the news
+        * the play button to scroll to the most highly ranked news position
 
-## Unit test and UI test
+## Instrumentation test
 
 - Notes: connect to your Android device or simulator before executing
 

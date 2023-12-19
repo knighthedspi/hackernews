@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -28,9 +30,25 @@ android {
         }
     }
 
+    signingConfigs {
+        create("release") {
+            if (file("../keystore/release_signing.properties").exists()) {
+                val properties = Properties()
+                file("../keystore/release_signing.properties").inputStream().use {
+                    properties.load(it)
+                }
+                keyAlias = properties["keyAlias"].toString()
+                keyPassword = properties["keyPassword"].toString()
+                storeFile = file(properties["storeFile"].toString())
+                storePassword = properties["storePassword"].toString()
+            }
+        }
+    }
+
     buildTypes {
-        release {
-            isMinifyEnabled = false
+        getByName("release") {
+            isMinifyEnabled = true
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -83,7 +101,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.6")
 
     // dependency injection
-    val hiltVersion = "2.48"
+    val hiltVersion = "2.49"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
@@ -116,7 +134,6 @@ dependencies {
     }
 
     // test
-    val mockitoVersion = "5.8.0"
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.arch.core:core-testing:2.2.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -128,6 +145,7 @@ dependencies {
     androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
     kaptAndroidTest("com.google.dagger:hilt-compiler:$hiltVersion")
     androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion")
+    val mockitoVersion = "5.8.0"
     androidTestImplementation("org.mockito:mockito-core:$mockitoVersion")
     androidTestImplementation("org.mockito:mockito-android:$mockitoVersion")
     testImplementation("androidx.arch.core:core-testing:$archVersion")
